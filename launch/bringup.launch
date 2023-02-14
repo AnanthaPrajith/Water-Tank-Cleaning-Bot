@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+  <include file="$(find line_follower)/launch/lfbg.launch"/>
+  <node pkg="line_follower" type="ls.py" name="left_sensor"  output="screen"/>
+  <node pkg="line_follower" type="ms.py" name="middle_sensor"  output="screen"/>
+  <node pkg="line_follower" type="rs.py" name="right_sensor"  output="screen"/>
+
+
+
+</launch>

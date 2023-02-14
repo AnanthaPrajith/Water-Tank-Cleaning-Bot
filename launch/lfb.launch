@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find line_follower)/urdf/lfb.xacro'"/>
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="True"/>
+  </node>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher">
+    <param name="publish_frequency" type="double" value="50.0" />
+
+  </node>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find line_follower)/config/line_follower.rviz"  /> 
+
+</launch>

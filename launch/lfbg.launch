@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find line_follower)/urdf/lfb.xacro'" />
+
+
+    <!-- these are the arguments you can pass this launch file, for example paused:=true    $(find xacro)/xacro.py -->
+ 
+  <arg name="paused" default="false"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="gui" default="true"/>
+    <arg name="headless" default="false"/>
+    <arg name="debug" default="false"/>
+    <arg name="world" default="$(find line_follower)/worlds/sam.world" />
+    <!-- We resume the logic in empty_world.launch -->
+    <include file="$(find line_follower)/launch/empty_world.launch">
+        <arg name="world_name" value="$(arg world)" />
+        <arg name="debug" value="$(arg debug)" />
+        <arg name="gui" value="$(arg gui)" />
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+        <arg name="headless" value="$(arg headless)"/>
+
+    </include>    
+    
+    <arg name="x" default="0.927375127252"/>
+    <arg name="y" default="-0.379883425418"/>
+    <arg name="z" default="0.02"/>
+    <arg name="r" default="3.14"/>
+
+
+
+
+
+    <!--<node name="mybot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-urdf -param robot_description -model my_robot -x $(arg x) -y $(arg y) -z $(arg z)" /> -->
+
+    <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf"  args="-urdf -model line_follower -x $(arg x) -y $(arg y) -z $(arg z) -Y $(arg r) -param robot_description" />
+
+</launch>
